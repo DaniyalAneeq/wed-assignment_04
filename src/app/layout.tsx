@@ -1,6 +1,20 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import FontAwesomeConfig from "./fontawesome";
+import localFont from "next/font/local";
+
+const satoshi = localFont({
+  src:"../font/Satoshi-Variable.ttf", 
+  variable: "--satoshi"
+})
+
+const integral = localFont({
+  src:"../font/Integral CF Regular.ttf", 
+  variable: "--integral"
+})
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <FontAwesomeConfig />
+      </head>
+      <body className={(inter.className, satoshi.variable, integral.variable )}>{children}</body>
     </html>
   );
 }
